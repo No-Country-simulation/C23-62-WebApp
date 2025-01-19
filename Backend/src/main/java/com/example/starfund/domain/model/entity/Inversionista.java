@@ -48,9 +48,13 @@ public class Inversionista {
     @Column(name = "fecha_registro", nullable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable = false)
     private Date fechaRegistro;
 
+    @Column(name = "monto_total_invertido", nullable = false, columnDefinition = "DECIMAL(15,2)")
+    private double montoTotalInvertido;
+
     @ManyToMany(mappedBy = "Inversion")
     private List<Inversion> inversiones = new ArrayList<>();
 
-
+    @ManyToMany(mappedBy = "Startup")
+    private List<Startup> startupsAgregados = new ArrayList<>();
 
 }

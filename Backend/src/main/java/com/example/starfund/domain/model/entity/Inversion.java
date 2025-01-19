@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
-import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -36,5 +35,10 @@ public class Inversion {
         private Date fechaInversion;
 
 
-
+        public Inversion(int inversionistaId, int startupId, Date fechaInversion, double valorInvertido) {
+                this.inversionistaId = inversionistaId;
+                this.startupId = startupId;
+                this.fechaInversion = fechaInversion;
+                this.valorInvertido = valorInvertido;
+        }
 }
