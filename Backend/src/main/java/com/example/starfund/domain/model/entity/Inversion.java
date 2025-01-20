@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,11 +23,11 @@ public class Inversion {
         @Column(name = "inversion_id")
         private int id;
 
-        @Column(name = "inversionista_id", nullable = false)
-        private int inversionistaId;
+        @OneToOne(mappedBy = "inversionista_id")
+        private Inversionista inversionistaId;
 
-        @Column(name = "startup_id", nullable = false)
-        private int startupId;
+        @OneToOne(mappedBy = "startup_id")
+        private Startup startupId;
 
         @Column(name = "valor_invertido", nullable = false, columnDefinition = "DECIMAL(15,2)")
         private double valorInvertido;
@@ -35,10 +36,14 @@ public class Inversion {
         private Date fechaInversion;
 
 
-        public Inversion(int inversionistaId, int startupId, Date fechaInversion, double valorInvertido) {
+        public Inversion(Inversionista inversionistaId, Startup startupId, Date fechaInversion, double valorInvertido) {
                 this.inversionistaId = inversionistaId;
                 this.startupId = startupId;
                 this.fechaInversion = fechaInversion;
                 this.valorInvertido = valorInvertido;
         }
+
+
+
+
 }

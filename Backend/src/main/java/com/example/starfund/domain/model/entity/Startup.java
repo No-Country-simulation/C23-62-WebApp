@@ -44,12 +44,11 @@ public class Startup {
     private double montoAcumulado;
 
 
-    @ManyToMany (mappedBy = "Inversionista")
+    @ManyToMany (mappedBy = "inversionista_id")
     private List<Inversionista> inversionistasSuscriptos = new ArrayList<>();
 
 
-
-    @ManyToMany (mappedBy = "Inversion")
+    @ManyToMany (mappedBy = "inversion_id")
     private List<Inversion> inversiones = new ArrayList<>();
 
 

@@ -1,5 +1,6 @@
 package com.example.starfund.service;
 
+import com.example.starfund.domain.model.dto.InversionDTO;
 import com.example.starfund.domain.model.entity.Inversion;
 import com.example.starfund.domain.model.entity.Inversionista;
 import com.example.starfund.domain.model.entity.Startup;
@@ -11,7 +12,9 @@ import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @NoArgsConstructor
@@ -44,8 +47,8 @@ public class InversionServiceImpl {
 
 
         Date fechaInversion = new Date();
-        inversionista.getInversiones().add(new Inversion(inversionista.getId(), startup.getId(), fechaInversion, valorInvertido));
-        startup.getInversiones().add(new Inversion(inversionista.getId(), startup.getId(), fechaInversion, valorInvertido));
+        inversionista.getInversiones().add(new Inversion(inversionista, startup, fechaInversion, valorInvertido));
+        startup.getInversiones().add(new Inversion(inversionista, startup, fechaInversion, valorInvertido));
     }
 
     public void eliminarInversion(int inversion_id) {
@@ -58,8 +61,8 @@ public class InversionServiceImpl {
 
         Inversion inversion = inversionOptional.get();
 
-        Startup startupAEliminar = startupRepository.findById(inversion.getStartupId()).get();
-        Inversionista inversionistaAEliminar = inversionistaRepository.findById(inversion.getInversionistaId()).get();
+        Startup startupAEliminar = startupRepository.findById(inversion.getStartupId().getId()).get();
+        Inversionista inversionistaAEliminar = inversionistaRepository.findById(inversion.getInversionistaId().getId()).get();
 
         startupAEliminar.getInversiones().remove(inversion);
         inversionistaAEliminar.getInversiones().remove(inversion);
@@ -70,7 +73,23 @@ public class InversionServiceImpl {
         inversionRepository.delete(inversion);
     }
 
+    public List<InversionDTO> listarInversiones(){
+        List<Inversion> inversiones = inversionRepository.findAll();
 
+        // Convertir a InversionDTO
+        List<InversionDTO> inversionesDTO = new ArrayList<>();
+        for (Inversion inversion : inversiones) {
+            InversionDTO dto = new InversionDTO(
+                    inversion.getId(),
+                    inversion.getInversionistaId(),
+                    inversion.getStartupId(),
+                    inversion.getValorInvertido(),
+                    inversion.getFechaInversion()
+            );
+            inversionesDTO.add(dto);
+        }
+        return inversionesDTO;
 
+    }
 
 }

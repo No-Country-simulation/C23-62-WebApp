@@ -51,10 +51,10 @@ public class Inversionista {
     @Column(name = "monto_total_invertido", nullable = false, columnDefinition = "DECIMAL(15,2)")
     private double montoTotalInvertido;
 
-    @ManyToMany(mappedBy = "Inversion")
+    @ManyToMany(mappedBy = "inversion_id")
     private List<Inversion> inversiones = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "Startup")
+    @ManyToMany(mappedBy = "startup_id")
     private List<Startup> startupsAgregados = new ArrayList<>();
 
 }
