@@ -61,8 +61,8 @@ public class InversionServiceImpl {
 
         Inversion inversion = inversionOptional.get();
 
-        Startup startupAEliminar = startupRepository.findById(inversion.getStartupId().getId()).get();
-        Inversionista inversionistaAEliminar = inversionistaRepository.findById(inversion.getInversionistaId().getId()).get();
+        Startup startupAEliminar = startupRepository.findById(inversion.getStartupId().getStartuo_id()).get();
+        Inversionista inversionistaAEliminar = inversionistaRepository.findById(inversion.getInversionistaId().getInversion_id()).get();
 
         startupAEliminar.getInversiones().remove(inversion);
         inversionistaAEliminar.getInversiones().remove(inversion);
@@ -80,7 +80,7 @@ public class InversionServiceImpl {
         List<InversionDTO> inversionesDTO = new ArrayList<>();
         for (Inversion inversion : inversiones) {
             InversionDTO dto = new InversionDTO(
-                    inversion.getId(),
+                    inversion.getInversion_id(),
                     inversion.getInversionistaId(),
                     inversion.getStartupId(),
                     inversion.getValorInvertido(),

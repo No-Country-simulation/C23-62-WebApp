@@ -20,7 +20,7 @@ public class Startup {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "startup_id")
-    private int id;
+    private int startuo_id;
 
     @Column(name = "nombre", nullable = false, columnDefinition = "VARCHAR(100)")
     private String nombre;
@@ -43,13 +43,11 @@ public class Startup {
     @Column(name = "monto_acumulado", nullable = false, columnDefinition = "DECIMAL(15,2)")
     private double montoAcumulado;
 
-
-    @ManyToMany (mappedBy = "inversionista_id")
+    @ManyToMany(mappedBy = "startupsAgregados")
     private List<Inversionista> inversionistasSuscriptos = new ArrayList<>();
 
-
-    @ManyToMany (mappedBy = "inversion_id")
+    @OneToMany(mappedBy = "startupId")
     private List<Inversion> inversiones = new ArrayList<>();
-
+    
 
 }

@@ -2,17 +2,16 @@ package com.example.starfund.service;
 
 import com.example.starfund.domain.model.entity.Inversion;
 import com.example.starfund.domain.model.entity.Inversionista;
-import com.example.starfund.domain.model.entity.Startup;
-import com.example.starfund.domain.repository.InversionRepository;
+
+
 import com.example.starfund.domain.repository.InversionistaRepository;
-import com.example.starfund.domain.repository.StartupRepository;
+
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,8 +23,7 @@ public class InversionistaServiceImpl {
     @Autowired
     private InversionistaRepository inversionistaRepository;
 
-    @Autowired
-    private StartupRepository startupRepository;
+    
 
 
 

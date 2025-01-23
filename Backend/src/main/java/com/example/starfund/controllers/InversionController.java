@@ -1,7 +1,7 @@
 package com.example.starfund.controllers;
 
 import com.example.starfund.domain.model.dto.InversionDTO;
-import com.example.starfund.domain.model.entity.Inversion;
+
 import com.example.starfund.service.InversionServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

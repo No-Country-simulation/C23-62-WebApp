@@ -1,6 +1,5 @@
 package com.example.starfund.domain.model.entity;
 
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,7 +21,7 @@ public class Inversionista {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "inversionista_id")
-    private int id;
+    private int inversion_id;
 
     @Column(name = "nombre", nullable = false, columnDefinition = "VARCHAR(50)")
     private String nombre;
@@ -39,7 +38,7 @@ public class Inversionista {
     @Column(name = "email", nullable = false, unique = true, columnDefinition = "VARCHAR(100)")
     private String email;
 
-    @Column(name = "telefono",columnDefinition = "VARCHAR(20)")
+    @Column(name = "telefono", columnDefinition = "VARCHAR(20)")
     private String telefono;
 
     @Column(name = "fecha_nacimiento", nullable = false)
@@ -51,10 +50,12 @@ public class Inversionista {
     @Column(name = "monto_total_invertido", nullable = false, columnDefinition = "DECIMAL(15,2)")
     private double montoTotalInvertido;
 
-    @ManyToMany(mappedBy = "inversion_id")
+    @OneToMany(mappedBy = "inversionistaId")
     private List<Inversion> inversiones = new ArrayList<>();
+    
 
-    @ManyToMany(mappedBy = "startup_id")
+    @ManyToMany
+    @JoinTable(name = "inversionista_startup", joinColumns = @JoinColumn(name = "inversionistaId"), inverseJoinColumns = @JoinColumn(name = "startupId"))
     private List<Startup> startupsAgregados = new ArrayList<>();
 
 }

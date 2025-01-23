@@ -2,12 +2,12 @@ package com.example.starfund.service;
 
 import com.example.starfund.domain.model.entity.Inversion;
 import com.example.starfund.domain.model.entity.Startup;
-import com.example.starfund.domain.repository.InversionRepository;
+
 import com.example.starfund.domain.repository.InversionistaRepository;
 import com.example.starfund.domain.repository.StartupRepository;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import org.hibernate.sql.ast.tree.expression.Star;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
