@@ -2,6 +2,8 @@ import React from "react";
 import Nav from "../ui/components/Nav";
 import { Route, Routes } from "react-router-dom";
 import Home from "../pages/Home";
+import { Project } from "../pages/Project";
+import { About } from "../pages/About";
 
 const AppRouter = () => {
   return (
@@ -12,8 +14,8 @@ const AppRouter = () => {
 
       <Routes>
         <Route path="/" element={<Home/>} />
-        <Route path="/project" element={<h1>project</h1>} />
-        <Route path="/about" element={<h1>about</h1>} />
+        <Route path="/project" element={<Project/>} />
+        <Route path="/about" element={<About/>} />
       </Routes>
         </div>
     </div>
