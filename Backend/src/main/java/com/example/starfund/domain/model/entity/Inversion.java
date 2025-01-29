@@ -4,13 +4,13 @@
         import jakarta.persistence.*;
         import lombok.AllArgsConstructor;
         import lombok.Getter;
-        import lombok.NoArgsConstructor;
-        import lombok.Setter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
         import java.util.Date;
         
-        @AllArgsConstructor
         @NoArgsConstructor
+        @AllArgsConstructor
         @Getter
         @Setter
         @Entity
@@ -20,15 +20,14 @@
                 @Id
                 @GeneratedValue(strategy = GenerationType.IDENTITY)
                 @Column(name = "inversion_id")
-                private int inversion_id;
+                private Long inversion_id;
 
-                @ManyToOne
-                @JoinColumn(name = "inversionista_id", nullable = false)
-                private Inversionista inversionistaId;
+                @Column(name = "inversionista_id", nullable = false)
+                private Long inversionistaId;
                 
-                @ManyToOne
+                
                 @JoinColumn(name = "startup_id", nullable = false)
-                private Startup startupId;
+                private Long startupId;
                 
 
                 @Column(name = "valor_invertido", nullable = false, columnDefinition = "DECIMAL(15,2)")
@@ -38,7 +37,7 @@
                 private Date fechaInversion;
 
 
-                public Inversion(Inversionista inversionistaId, Startup startupId, Date fechaInversion, double valorInvertido) {
+                public Inversion(Long inversionistaId, Long startupId, Date fechaInversion, double valorInvertido) {
                         this.inversionistaId = inversionistaId;
                         this.startupId = startupId;
                         this.fechaInversion = fechaInversion;

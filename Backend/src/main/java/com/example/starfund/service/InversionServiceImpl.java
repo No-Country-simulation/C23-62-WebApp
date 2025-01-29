@@ -7,8 +7,6 @@ import com.example.starfund.domain.model.entity.Startup;
 import com.example.starfund.domain.repository.InversionRepository;
 import com.example.starfund.domain.repository.InversionistaRepository;
 import com.example.starfund.domain.repository.StartupRepository;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +15,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-@NoArgsConstructor
-@AllArgsConstructor
+
 @Service
 public class InversionServiceImpl {
 
@@ -32,50 +29,67 @@ public class InversionServiceImpl {
     private StartupRepository startupRepository;
 
 
-    public void agregarInversion(int inversionista_id, int startup_id, double valorInvertido) {
-
+    public void agregarInversion(Long inversionista_id, Long startup_id, double valorInvertido) {
         Optional<Startup> startupOptional = startupRepository.findById(startup_id);
         Optional<Inversionista> inversionistaOptional = inversionistaRepository.findById(inversionista_id);
-
-
-        if(startupOptional.isEmpty() || inversionistaOptional.isEmpty()){
+    
+        if (startupOptional.isEmpty() || inversionistaOptional.isEmpty()) {
             return;
         }
-
+    
         Inversionista inversionista = inversionistaOptional.get();
         Startup startup = startupOptional.get();
-
-
+        
+        // Crear nueva inversión
         Date fechaInversion = new Date();
-        inversionista.getInversiones().add(new Inversion(inversionista, startup, fechaInversion, valorInvertido));
-        startup.getInversiones().add(new Inversion(inversionista, startup, fechaInversion, valorInvertido));
+        Inversion nuevaInversion = new Inversion(inversionista.getInversionista_id(), startup.getStartup_id(), fechaInversion, valorInvertido);
+        
+        
+        inversionista.getInversiones().add(nuevaInversion);
+        startup.getInversiones().add(nuevaInversion);
+            
+        inversionRepository.save(nuevaInversion);
     }
-
-    public void eliminarInversion(int inversion_id) {
-
+    
+    public void eliminarInversion(Long inversion_id) {
         Optional<Inversion> inversionOptional = inversionRepository.findById(inversion_id);
-
-        if(inversionOptional.isEmpty()){
+    
+        if (inversionOptional.isEmpty()) {
             return;
         }
-
+    
         Inversion inversion = inversionOptional.get();
-
-        Startup startupAEliminar = startupRepository.findById(inversion.getStartupId().getStartuo_id()).get();
-        Inversionista inversionistaAEliminar = inversionistaRepository.findById(inversion.getInversionistaId().getInversion_id()).get();
-
-        startupAEliminar.getInversiones().remove(inversion);
-        inversionistaAEliminar.getInversiones().remove(inversion);
-
-        startupAEliminar.getInversionistasSuscriptos().remove(inversionistaAEliminar);
-        inversionistaAEliminar.getStartupsAgregados().remove(startupAEliminar);
-
+    
+        // Obtener los IDs directamente en lugar de las entidades
+        Long inversionistaId = inversion.getInversionistaId();
+        Long startupId = inversion.getStartupId();
+    
+        // Buscar las entidades manualmente
+        Optional<Startup> startupOptional = startupRepository.findById(startupId);
+        Optional<Inversionista> inversionistaOptional = inversionistaRepository.findById(inversionistaId);
+    
+        if (startupOptional.isPresent() && inversionistaOptional.isPresent()) {
+            Startup startupAEliminar = startupOptional.get();
+            Inversionista inversionistaAEliminar = inversionistaOptional.get();
+    
+            startupAEliminar.getInversiones().remove(inversion);
+            inversionistaAEliminar.getInversiones().remove(inversion);
+    
+            startupAEliminar.getInversionistasSuscriptos().remove(inversionistaAEliminar);
+            inversionistaAEliminar.getStartupsAgregados().remove(startupAEliminar);
+    
+            // Guardar cambios antes de eliminar la inversión
+            startupRepository.save(startupAEliminar);
+            inversionistaRepository.save(inversionistaAEliminar);
+        }
+    
+        // Finalmente eliminar la inversión
         inversionRepository.delete(inversion);
     }
-
+    
     public List<InversionDTO> listarInversiones(){
         List<Inversion> inversiones = inversionRepository.findAll();
-
+        
         // Convertir a InversionDTO
         List<InversionDTO> inversionesDTO = new ArrayList<>();
         for (Inversion inversion : inversiones) {

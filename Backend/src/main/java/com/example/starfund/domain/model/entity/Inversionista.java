@@ -21,7 +21,7 @@ public class Inversionista {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "inversionista_id")
-    private int inversion_id;
+    private Long inversionista_id;
 
     @Column(name = "nombre", nullable = false, columnDefinition = "VARCHAR(50)")
     private String nombre;
@@ -41,7 +41,7 @@ public class Inversionista {
     @Column(name = "telefono", columnDefinition = "VARCHAR(20)")
     private String telefono;
 
-    @Column(name = "fecha_nacimiento", nullable = false)
+    @Column(name = "fecha_nacimiento", nullable = false, columnDefinition = "DATE")
     private Date fechaNacimiento;
 
     @Column(name = "fecha_registro", nullable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable = false)

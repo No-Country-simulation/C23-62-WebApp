@@ -1,11 +1,13 @@
 package com.example.starfund.service;
 
+import com.example.starfund.domain.model.dto.InversionistaDTO;
 import com.example.starfund.domain.model.entity.Inversion;
 import com.example.starfund.domain.model.entity.Inversionista;
 
 
 import com.example.starfund.domain.repository.InversionistaRepository;
 
+import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +41,7 @@ public class InversionistaServiceImpl {
     }
 
 
-    public void eliminarInversionista(int inversionista_id) {
+    public void eliminarInversionista(Long inversionista_id) {
 
         Optional<Inversionista> inversionistaOptional = inversionistaRepository.findById(inversionista_id);
 
@@ -52,28 +54,58 @@ public class InversionistaServiceImpl {
         inversionistaRepository.delete(inversionista);
     }
 
-    public List<Inversionista> listarInversionista() {
-
-        List<Inversionista> listaInversionistas = inversionistaRepository.findAll();
-        if(listaInversionistas.isEmpty()){
-            return new ArrayList<>();
+    public List<InversionistaDTO> listarTodosInversionistas() {
+        List<Inversionista> inversionistas = inversionistaRepository.findAll();
+    
+        // Convertir Inversionista a InversionistaDTO
+        List<InversionistaDTO> inversionistasDTO = new ArrayList<>();
+        for (Inversionista inversionista : inversionistas) {
+            InversionistaDTO dto = new InversionistaDTO(
+                    inversionista.getInversionista_id(),
+                    inversionista.getNombre(),
+                    inversionista.getApellido(),
+                    inversionista.getUsuario(),
+                    inversionista.getEmail(),
+                    inversionista.getTelefono(),
+                    inversionista.getFechaNacimiento(),
+                    inversionista.getFechaRegistro(),
+                    inversionista.getMontoTotalInvertido()
+            );
+            inversionistasDTO.add(dto);
         }
-
-        return listaInversionistas;
+    
+        return inversionistasDTO;
     }
+    
+ 
 
-    public Inversionista buscarInversionista(int inversionista_id) {
+    public InversionistaDTO buscarInversionista(Long inversionista_id) {
 
         Optional<Inversionista> inversionistaOptional = inversionistaRepository.findById(inversionista_id);
-
-        if(inversionistaOptional.isEmpty()){
-            return null;
+            
+        
+            if (inversionistaOptional.isPresent()) {
+                Inversionista inversionista = inversionistaOptional.get();
+                return new InversionistaDTO(
+                        inversionista.getInversionista_id(),
+                        inversionista.getNombre(),
+                        inversionista.getApellido(),
+                        inversionista.getUsuario(),
+                        inversionista.getEmail(),
+                        inversionista.getTelefono(),
+                        inversionista.getFechaNacimiento(),
+                        inversionista.getFechaRegistro(),
+                        inversionista.getMontoTotalInvertido()
+                );
+            } 
+            return new InversionistaDTO();
         }
 
-        return inversionistaOptional.get();
-    }
-
-    public void montoTotalInvertido(int inversionista_id) {
+public Inversionista buscarInversionistaCompleto(Long id) {
+    return inversionistaRepository.findById(id)
+            .orElseThrow(() -> new EntityNotFoundException("Inversionista no encontrado con ID: " + id));
+}
+    public void montoTotalInvertido(Long inversionista_id) {
 
             Optional<Inversionista> inversionistaOptional = inversionistaRepository.findById(inversionista_id);
 

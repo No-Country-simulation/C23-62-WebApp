@@ -45,15 +45,15 @@ public class StartupServiceImpl {
 
     }
 
-    public Startup buscarStartup(int startup_id) {
+    public Startup buscarStartup(Long startup_id) {
         return startupRepository.findById(startup_id).orElse(new Startup());
     }
 
-    public void eliminarStartup(int startup_id) {
+    public void eliminarStartup(Long startup_id) {
         startupRepository.deleteById(startup_id);
     }
 
-    public List<Startup> listarStartupsPorInversionista(int inversionista_id) {
+    public List<Startup> listarStartupsPorInversionista(Long inversionista_id) {
 
         List<Startup> startupsInvertidas = inversionistaRepository.findById(inversionista_id).get().getStartupsAgregados();
 
@@ -63,7 +63,7 @@ public class StartupServiceImpl {
         return startupsInvertidas;
     }
 
-    public List<Inversion> listarInversionesPorStartup(int startup_id) {
+    public List<Inversion> listarInversionesPorStartup(Long startup_id) {
 
         List<Inversion> inversionesRecibidas = startupRepository.findById(startup_id).get().getInversiones();
 
@@ -73,7 +73,7 @@ public class StartupServiceImpl {
         return inversionesRecibidas;
     }
 
-    public void calculoMontoAcumulado(int startup_id){
+    public void calculoMontoAcumulado(Long startup_id){
 
         Optional<Startup> startupOptional = startupRepository.findById(startup_id);
 

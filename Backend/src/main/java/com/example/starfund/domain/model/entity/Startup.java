@@ -20,7 +20,7 @@ public class Startup {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "startup_id")
-    private int startuo_id;
+    private Long startup_id;
 
     @Column(name = "nombre", nullable = false, columnDefinition = "VARCHAR(100)")
     private String nombre;

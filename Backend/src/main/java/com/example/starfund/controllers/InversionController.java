@@ -17,15 +17,17 @@ public class InversionController {
     private final InversionServiceImpl inversionService;
 
     @GetMapping("/inversiones")
-    public ResponseEntity<List<InversionDTO>> listarInversiones(){
-        // Llamamos al servicio para obtener la lista de inversiones
-        List<InversionDTO> inversiones = inversionService.listarInversiones();
-
-        // Verificamos si la lista está vacía
-        if(inversiones.isEmpty()){
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT); // Retorna 204 si no hay datos
+    public ResponseEntity<List<InversionDTO>> listarInversiones() {
+        try {
+            List<InversionDTO> inversiones = inversionService.listarInversiones();
+            if (inversiones.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(inversiones, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace(); // Para registrar el error en consola
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
-        // Retorna la lista de inversiones con código de estado 200 (OK)
-        return new ResponseEntity<>(inversiones, HttpStatus.OK);
-    }}
+    }
+}
+ 
