@@ -7,6 +7,9 @@ import com.example.starfund.domain.model.entity.Startup;
 import com.example.starfund.domain.repository.InversionRepository;
 import com.example.starfund.domain.repository.InversionistaRepository;
 import com.example.starfund.domain.repository.StartupRepository;
+
+import jakarta.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -105,5 +108,18 @@ public class InversionServiceImpl {
         return inversionesDTO;
 
     }
+    public void actualizarInversion(Long inversionId, double nuevoValor) {
+    Optional<Inversion> inversionOptional = inversionRepository.findById(inversionId);
+
+    if (inversionOptional.isEmpty()) {
+        throw new EntityNotFoundException("Inversión no encontrada");
+    }
+
+    Inversion inversion = inversionOptional.get();
+    inversion.setValorInvertido(nuevoValor);
+    
+    inversionRepository.save(inversion);
+}
+
 
 }

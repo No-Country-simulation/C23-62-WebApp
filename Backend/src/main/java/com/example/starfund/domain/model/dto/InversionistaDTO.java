@@ -1,26 +1,26 @@
-package com.example.starfund.domain.model.dto;
+    package com.example.starfund.domain.model.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+    import lombok.AllArgsConstructor;
+    import lombok.Getter;
+    import lombok.NoArgsConstructor;
+    import lombok.Setter;
 
-import java.util.Date;
+    import java.util.Date;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
-public class InversionistaDTO {
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Getter
+    @Setter
+    public class InversionistaDTO {
 
-    private Long inversionistaId;
-    private String nombre;
-    private String apellido;
-    private String usuario;
-    private String email;
-    private String telefono;
-    private Date fechaNacimiento;
-    private Date fechaRegistro;
-    private double montoTotalInvertido;
-  
-}
+        private Long inversionistaId;
+        private String nombre;
+        private String apellido;
+        private String usuario;
+        private String email;
+        private String telefono;
+        private Date fechaNacimiento;
+        private Date fechaRegistro;
+        private double montoTotalInvertido;
+    
+    }
