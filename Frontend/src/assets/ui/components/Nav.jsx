@@ -1,11 +1,18 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 function Nav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const navigate = useNavigate();
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+
+  const handleNavigate = () => {
+    navigate("/login");
   };
 
   return (
@@ -73,7 +80,7 @@ function Nav() {
           alt="Avatar"
           className="w-10 h-10 rounded-full"
         />
-        <button className="bg-[#00B4D8] text-white font-bold px-4 py-2 rounded-full hover:bg-blue-600 transition">
+        <button onClick={handleNavigate} className="bg-[#00B4D8] text-white font-bold px-4 py-2 rounded-full hover:bg-blue-600 transition">
           Invierte ahora
         </button>
       </div>

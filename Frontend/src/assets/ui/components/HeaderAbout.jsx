@@ -2,7 +2,7 @@ import React from 'react'
 
 export const HeaderAbout = () => {
   return (
-    <div className='flex  justify-center min-h-screen bg-gray-100'>
+    <div className='flex justify-center max-h-screen bg-gray-100'>
 
 <div className=" flex justify-center items-center w-full h-[400px] mt-4 mx-20 rounded-[30px] bg-cover bg-center relative" style={{ backgroundImage: "url('public/rascacielos-angulo-vista_1359-1020.jpg')" }} >
 
