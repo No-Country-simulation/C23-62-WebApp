@@ -13,6 +13,7 @@ public class StartupDTO {
     private int id;
     private String nombre;
     private String descripcion;
+    private String categoria;
     private String comentarios;
     private double valorRecaudar;
     private String urlFoto;

@@ -28,6 +28,9 @@ public class Startup {
     @Column(name = "descripcion", nullable = false, columnDefinition = "TEXT")
     private String descripcion;
 
+    @Column(name = "categoria", nullable = false, columnDefinition = "VARCHAR(100)")
+    private String categoria;
+
     @Column(name = "comentarios", nullable = false, columnDefinition = "TEXT")
     private String comentarios;
 
