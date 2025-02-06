@@ -22,7 +22,7 @@ export const HeaderHome = () => {
       {/* Div 2 */}
       <div className="w-[100%]  flex justify-end">
         <img
-          src="public/image.png"
+          src="/image.png"
           alt="Ejemplo de imagen"
           className="w-[89%] h-auto rounded-md shadow-md"
         />

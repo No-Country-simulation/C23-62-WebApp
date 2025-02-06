@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect,useState} from "react";
 import { CardProjects } from "../ui/components/CardProjects";
 import { TestimonialCard } from "../ui/components/TestimonialCard";
 import { Grid } from "../ui/components/Grid";
@@ -8,6 +8,46 @@ import { Footer } from "../ui/components/Footer";
 
 
 const Home = () => {
+
+  const [proyecto, setProyect] = useState([]);
+  const [descatados, setDestacados] = useState([]);
+
+
+  useEffect(() => {
+    handleUp();
+  }, []);
+  const handleUp = async () => {
+    await fetch("http://localhost:8080/api/v1/startups/Startups/")
+      .then((response) => response.json())
+      .then((data) => {
+        setProyect(data);
+      })
+      .catch((error) => console.error("Error fetching data:", error));
+    }
+
+
+  function selectora() {
+    proyecto.forEach(element => {
+      switch (element.categoria) {
+        case "descatados":
+          setDestacados((prev) =>
+            prev.some((e) => e.startup_id === element.startup_id) ? prev : [...prev, element]
+          );
+          break;
+        default:
+          break;
+      }
+    });
+  }
+
+
+  useEffect(() => {
+    if (proyecto.length > 0) { selectora(); }
+  }, [proyecto])
+
+
+
+
   return (
     <div className="  mt-8">
       <HeaderHome />
@@ -19,8 +59,9 @@ const Home = () => {
           </h2>
         </div>
         <div className=" px-20 ">
-          <CardProjects />
           
+          <CardProjects array={descatados} />
+
         </div>
       </div>
 
@@ -44,8 +85,8 @@ const Home = () => {
       <TestimonialCard />
       <Grid />
       <Pluss />
-      <Footer/>
-    
+      <Footer />
+
     </div>
   );
 };

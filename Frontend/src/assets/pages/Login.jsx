@@ -44,7 +44,7 @@ export const Login = () => {
           type="submit"
           className="bg-[#00B4D8] font-bold w-full text-white px-6 py-2 rounded-[20px] hover:bg-blue-600"
           >
-          Registrarse
+          Iniciar Sesión
         </button>
          <p>
         ¿No tienes cuenta?{" "}

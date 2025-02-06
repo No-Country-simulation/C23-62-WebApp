@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.starfund.domain.model.dto.InversionistaCreateDTO;
 import com.example.starfund.domain.model.dto.InversionistaDTO;
-import com.example.starfund.domain.model.dto.inversionCreateDTO;
 import com.example.starfund.domain.model.entity.Inversion;
 import com.example.starfund.domain.model.entity.Inversionista;
 import com.example.starfund.domain.model.entity.Startup;

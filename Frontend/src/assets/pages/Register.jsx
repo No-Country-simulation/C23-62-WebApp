@@ -26,21 +26,25 @@ export const Register = () => {
               className="text-xl px-4 py-2 border border-gray-500  rounded-[20px] w-full "
               type="text"
               placeholder="Nombre y apellido"
+              required
             />
             <input
               className="text-xl px-4 py-2 border border-gray-500  rounded-[20px] w-full "
               type="email"
               placeholder="Correo electrónico"
+              required
             />
             <input
               className="text-xl px-4 py-2 border border-gray-500  rounded-[20px] w-full "
               type="password"
               placeholder="Contraseña"
+              required
             />
             <input
               className="text-xl px-4 py-2 border border-gray-500  rounded-[20px] w-full "
               type="password"
               placeholder="Confirmar contraseña"
+              required
             />
 
            
