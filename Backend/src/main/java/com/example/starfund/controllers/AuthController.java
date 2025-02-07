@@ -4,6 +4,10 @@ import com.example.starfund.domain.model.dto.LoginDto;
 import com.example.starfund.service.AuthService;
 import com.example.starfund.service.InversionistaServiceImpl;
 import lombok.AllArgsConstructor;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,21 +17,23 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins = "*")
 @RestController
 public class AuthController {
-    private final AuthService authService;
+ 
 
     private final InversionistaServiceImpl inversionistaService;
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginDto loginDto) {
+    public ResponseEntity<Map<String,String>> login(@RequestBody LoginDto loginDto) {
         String usuario = loginDto.getUsuario();
         String contrasena = loginDto.getContrasena();
 
         boolean acceso = inversionistaService.buscarPorUsuario(usuario, contrasena);
-
+        Map <String, String> response = new HashMap<String, String>();
         if (acceso) {
-            return ResponseEntity.status(HttpStatus.OK).body("Login successful");
+            response.put("mensaje","Login successful");
+            return ResponseEntity.status(HttpStatus.OK).body(response);
         } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
+            response.put("mensaje","Invalid username or password");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
         }
     }
 }

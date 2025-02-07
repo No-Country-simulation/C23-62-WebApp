@@ -2,14 +2,14 @@ import React from "react";
 
 export const ContainAboutButton = () => {
   return (
-    <div className=" grid grid-cols-2 place-items-center px-20 h-[500px]">
+    <div className=" grid grid-cols-2 place-items-center px-20 h-[auto]  m-[30px]">
       <div className=" h-[100%] w-[100%] grid place-items-center px-10 ">
 
 
       <img
         src="public/222.jpg"
         alt="Ejemplo de imagen"
-        className="w-[100%] h-auto rounded-md shadow-md"
+        className="w-[100%] m-auto h-auto rounded-md shadow-md"
       />
 
 

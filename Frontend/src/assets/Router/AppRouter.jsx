@@ -6,6 +6,7 @@ import { Project } from "../pages/Project";
 import { About } from "../pages/About";
 import { Login } from "../pages/Login";
 import { Register } from "../pages/Register";
+import Inicio from './../pages/inicio';
 
 const AppRouter = () => {
   const location = useLocation(); // Obtiene la ruta actual
@@ -13,10 +14,11 @@ const AppRouter = () => {
   return (
     <div>
       {/* Renderiza el Nav solo si no estás en /login o /register */}
-      {location.pathname !== "/login" && location.pathname !== "/register" && <Nav />}
+      {location.pathname !== "/login" && location.pathname !== "/register" && location.pathname !== "/" && <Nav />}
       <div>
         <Routes>
-          <Route path="/" element={<Home />} />
+        <Route path="/" element={<Inicio />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/project" element={<Project />} />
           <Route path="/about" element={<About />} />
           
