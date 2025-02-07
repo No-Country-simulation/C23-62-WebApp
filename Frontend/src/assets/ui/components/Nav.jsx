@@ -10,7 +10,6 @@ function Nav() {
     setIsMenuOpen(!isMenuOpen);
   };
 
-
   const handleNavigate = () => {
     navigate("/");
   };
@@ -19,17 +18,17 @@ function Nav() {
     <nav className="flex items-center justify-between px-20 py-4 bg-gray-100 border-b border-gray-300">
       {/* Logo */}
       <div className="text-2xl font-bold text-blue-800">
-      <img
-          src="public/Logo.png" // Reemplaza con la URL de tu avatar
-          alt="Avatar"
-          className="w-40 "
-        /></div>
+        <Link to="/home">
+          <img
+            src="public/Logo.png" // Reemplaza con la URL de tu avatar
+            alt="Avatar"
+            className="w-40 "
+          />
+        </Link>
+      </div>
 
       {/* Menú Hamburguesa */}
-      <button
-        className="md:hidden text-gray-700"
-        onClick={toggleMenu}
-      >
+      <button className="text-gray-700 md:hidden" onClick={toggleMenu}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="w-6 h-6"
@@ -49,13 +48,15 @@ function Nav() {
       {/* Links de navegación */}
       <ul
         className={`flex space-x-10 md:flex md:space-x-10 ${
-          isMenuOpen ? "flex-col space-y-4 absolute top-16 left-0 w-full bg-gray-100 px-4 py-4 md:static md:flex-row" : "hidden"
+          isMenuOpen
+            ? "flex-col space-y-4 absolute top-16 left-0 w-full bg-gray-100 px-4 py-4 md:static md:flex-row"
+            : "hidden"
         }`}
       >
         <li>
           <Link
             to="/home"
-            className="text-gray-700 hover:font-bold transition-colors"
+            className="text-gray-700 transition-colors hover:font-bold"
           >
             Inicio
           </Link>
@@ -63,7 +64,7 @@ function Nav() {
         <li>
           <Link
             to="/project"
-            className="text-gray-700 hover:font-bold transition-colors"
+            className="text-gray-700 transition-colors hover:font-bold"
           >
             Explorar proyectos
           </Link>
@@ -71,7 +72,7 @@ function Nav() {
         <li>
           <Link
             to="/about"
-            className="text-gray-700 hover:font-bold transition-colors"
+            className="text-gray-700 transition-colors hover:font-bold"
           >
             Sobre Nosotros
           </Link>
@@ -85,8 +86,11 @@ function Nav() {
           alt="Avatar"
           className="w-10 h-10 rounded-full"
         />
-        <button onClick={handleNavigate} className="bg-[#00B4D8] text-white font-bold px-4 py-2 rounded-full hover:bg-blue-600 transition">
-         Salir
+        <button
+          onClick={handleNavigate}
+          className="bg-[#00B4D8] text-white font-bold px-4 py-2 rounded-full hover:bg-blue-600 transition"
+        >
+          Salir
         </button>
       </div>
     </nav>

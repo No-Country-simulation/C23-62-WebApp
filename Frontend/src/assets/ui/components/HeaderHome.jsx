@@ -1,8 +1,8 @@
-import React from "react";
+import { Link } from "react-router-dom";
 
 export const HeaderHome = () => {
   return (
-    <div className="flex  flex-col md:flex-row md:justify-between border-b-4 pb-20 border-gray-300   px-20  ml-auto">
+    <div className="flex flex-col px-20 pb-20 ml-auto border-b-4 border-gray-300 md:flex-row md:justify-between">
       {/* Div 1 */}
       <div className="w-[60%]  flex items-center justify-end ">
         <div className="space-y-4  h-[500px] ">
@@ -14,7 +14,7 @@ export const HeaderHome = () => {
             parte del crecimiento de proyectos que cambian el mundo.
           </p>
           <button className="px-6 py-3 my-4 text-[20px] bg-[#00B4D8] text-white font-medium rounded-md hover:bg-blue-700 transition">
-            Explorar Proyectos
+            <Link to="/project">Explorar proyectos</Link>
           </button>
         </div>
       </div>

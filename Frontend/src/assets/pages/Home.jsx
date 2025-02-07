@@ -1,4 +1,4 @@
-import React, {useEffect,useState} from "react";
+import { useEffect, useState } from "react";
 import { CardProjects } from "../ui/components/CardProjects";
 import { TestimonialCard } from "../ui/components/TestimonialCard";
 import { Grid } from "../ui/components/Grid";
@@ -6,12 +6,9 @@ import { HeaderHome } from "../ui/components/HeaderHome";
 import { Pluss } from "../ui/components/Pluss";
 import { Footer } from "../ui/components/Footer";
 
-
 const Home = () => {
-
   const [proyecto, setProyect] = useState([]);
   const [descatados, setDestacados] = useState([]);
-
 
   useEffect(() => {
     handleUp();
@@ -23,15 +20,16 @@ const Home = () => {
         setProyect(data);
       })
       .catch((error) => console.error("Error fetching data:", error));
-    }
-
+  };
 
   function selectora() {
-    proyecto.forEach(element => {
+    proyecto.forEach((element) => {
       switch (element.categoria) {
         case "descatados":
           setDestacados((prev) =>
-            prev.some((e) => e.startup_id === element.startup_id) ? prev : [...prev, element]
+            prev.some((e) => e.startup_id === element.startup_id)
+              ? prev
+              : [...prev, element]
           );
           break;
         default:
@@ -40,28 +38,24 @@ const Home = () => {
     });
   }
 
-
   useEffect(() => {
-    if (proyecto.length > 0) { selectora(); }
-  }, [proyecto])
-
-
-
+    if (proyecto.length > 0) {
+      selectora();
+    }
+  }, [proyecto]);
 
   return (
-    <div className="  mt-8">
+    <div className="mt-8 ">
       <HeaderHome />
 
       <div>
-        <div className="items-center pt-20   ">
-          <h2 className="text-center pb-4 text-3xl font-bold">
+        <div className="items-center pt-20 ">
+          <h2 className="pb-4 text-3xl font-bold text-center">
             Proyectos Destacados
           </h2>
         </div>
-        <div className=" px-20 ">
-          
+        <div className="px-20 ">
           <CardProjects array={descatados} />
-
         </div>
       </div>
 
@@ -71,12 +65,12 @@ const Home = () => {
         </h1>
       </div>
 
-      <div className="items-center pt-20 pb-10 border  ">
+      <div className="items-center pt-20 pb-10 border ">
         <div className=" px-[20%]">
-          <h2 className=" text-center text-4xl font-bold">
+          <h2 className="text-4xl font-bold text-center ">
             Lo que dicen nuestros inversores y emprendedores
           </h2>
-          <p className=" text-xl text-gray-500 font-semibold">
+          <p className="text-xl font-semibold text-gray-500 ">
             Historias reales de personas que han transformado ideas en éxitos.
           </p>
         </div>
@@ -86,7 +80,6 @@ const Home = () => {
       <Grid />
       <Pluss />
       <Footer />
-
     </div>
   );
 };

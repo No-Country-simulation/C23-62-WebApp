@@ -29,35 +29,35 @@ export const Project = () => {
   function selectora(data) {
     data.forEach((element) => {
       switch (element.categoria) {
-        case "tecnologia":
+        case "Tecnología":
           setTecnologia((prev) =>
             prev.some((e) => e.startup_id === element.startup_id)
               ? prev
               : [...prev, element]
           );
           break;
-        case "descatados":
+        case "Destacados":
           setDestacados((prev) =>
             prev.some((e) => e.startup_id === element.startup_id)
               ? prev
               : [...prev, element]
           );
           break;
-        case "alimentacion":
+        case "Alimentación":
           setAlimentacion((prev) =>
             prev.some((e) => e.startup_id === element.startup_id)
               ? prev
               : [...prev, element]
           );
           break;
-        case "educación":
+        case "Educación":
           setEducacion((prev) =>
             prev.some((e) => e.startup_id === element.startup_id)
               ? prev
               : [...prev, element]
           );
           break;
-        case "medioambiente":
+        case "Medioambiente":
           setMedioAmbiente((prev) =>
             prev.some((e) => e.startup_id === element.startup_id)
               ? prev
@@ -88,10 +88,6 @@ export const Project = () => {
       </div>
 
       <div className="w-full lg:h-[150px] md:h-[100px] flex gap-4 items-center px-20 py-6">
-        <div className="flex items-center h-full gap-4">
-          <FiFilter className="text-3xl" />
-          <span>Filtrar</span>
-        </div>
         <div className="bg-gray-200 h-12 w-[400px] rounded-3xl flex justify-center items-center">
           <MdOutlineSearch className="p-0 text-2xl text-gray-500" />
           <form action="">
