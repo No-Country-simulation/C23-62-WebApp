@@ -145,4 +145,13 @@ public class InversionistaServiceImpl {
         inversionista.setMontoTotalInvertido(montoTotal);
     }
 
+    public boolean buscarPorUsuario(String usuario, String contrasena) {
+        List<Inversionista> inversionistas = inversionistaRepository.findAll();
+        for (Inversionista inversionista : inversionistas){
+            if ( (inversionista.getUsuario().equals(usuario)) && (inversionista.getContrasena().equals(contrasena)) ){
+                return true;
+            }
+        }
+        return false;
+    }
 }
